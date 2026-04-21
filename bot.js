@@ -8,15 +8,15 @@
 // API HTTP (usada pelo .exe do cliente):
 //   GET /check?hwid=XXXX  → retorna {"active":true/false,"days_left":N}
 
-const { Client, GatewayIntentBits } = require("discord.js");
+const { Client, Intents } = require("discord.js");
 const express = require("express");
 const fs = require("fs");
 
 // ─── Config ──────────────────────────────────────────────────────────────────
-const BOT_TOKEN      = process.env.BOT_TOKEN;       // seu token do bot
-const CANAL_ATIVACOES = process.env.CANAL_ID;        // ID do canal #ativações
-const API_PORT       = process.env.PORT || 3000;
-const DB_FILE        = "licenses.json";
+const BOT_TOKEN       = process.env.BOT_TOKEN;
+const CANAL_ATIVACOES = process.env.CANAL_ID;
+const API_PORT        = process.env.PORT || 3000;
+const DB_FILE         = "licenses.json";
 
 // ─── Banco de dados simples (JSON) ───────────────────────────────────────────
 function loadDB() {
@@ -50,9 +50,8 @@ function isAtivo(expDate) {
 // ─── Discord Bot ─────────────────────────────────────────────────────────────
 const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
     ]
 });
 
