@@ -187,6 +187,15 @@ console.log("Iniciando TRT Bot...");
 console.log("TOKEN presente:", !!BOT_TOKEN);
 console.log("CANAL_ID:", CANAL_ATIVACOES);
 
+// Keep-alive: pinga a própria API a cada 4 minutos pra não dormir
+setInterval(() => {
+    const http = require("http");
+    http.get(`http://localhost:${API_PORT}/`, () => {}).on("error", () => {});
+}, 4 * 60 * 1000);
+
+client.on("error", (err) => console.error("Discord erro:", err.message));
+client.on("disconnect", () => console.log("Bot desconectado, reconectando..."));
+
 client.login(BOT_TOKEN).catch(err => {
     console.error("ERRO ao fazer login:", err.message);
     process.exit(1);
