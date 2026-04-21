@@ -183,4 +183,11 @@ app.listen(API_PORT, () => {
 });
 
 // ─── Login ────────────────────────────────────────────────────────────────────
-client.login(BOT_TOKEN);
+console.log("Iniciando TRT Bot...");
+console.log("TOKEN presente:", !!BOT_TOKEN);
+console.log("CANAL_ID:", CANAL_ATIVACOES);
+
+client.login(BOT_TOKEN).catch(err => {
+    console.error("ERRO ao fazer login:", err.message);
+    process.exit(1);
+});
