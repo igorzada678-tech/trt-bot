@@ -1,0 +1,13 @@
+{
+  "name": "trt-bot",
+  "version": "1.0.0",
+  "description": "TRT Games - Sistema de licenças via Discord",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "express": "^4.18.2"
+  }
+}
